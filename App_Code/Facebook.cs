@@ -8,9 +8,28 @@
 
     struct Post
     {
-        public string createdTime { get; set; }
-        public string message { get; set; }
-        public string id { get; set; }
+        public string createdTime;
+        public string message;
+        public string pagePostId;
+    }
+
+    struct Comment
+    {
+
+        public string id;
+        public string message;
+        public Commenter from
+    }
+
+    struct Commenter
+    {
+        public string name;
+        public string id;
+    }
+
+    struct CommentResponse
+    {
+        public List<Comment> Comments { get; set; }
     }
 
     public class Facebook
@@ -245,6 +264,92 @@
                             string responseContent = await response.Content.ReadAsStringAsync();
                             Console.WriteLine("Resposta do servidor: " + responseContent);
                         }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro: " + ex.Message);
+                }
+            }
+        }
+
+        public async Task<List<Comment>> GetPostComments(string postId, string accessToken)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                List<Comment> comments = null;
+
+                try
+                {
+                    string requestUrl = $"https://graph.facebook.com/v18.0/{postId}/comments?access_token={accessToken}";
+
+                    HttpResponseMessage response = await client.GetAsync(requestUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        var data = JsonConvert.DeserializeObject<CommentResponse>(responseContent);
+
+                        if (data != null)
+                        {
+                            comments = data.Comments;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Falha ao obter comentarios da postagem. Erro: {response.StatusCode}");
+                    }
+                }   
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro: " + ex.Message);
+                }
+
+                return comments;
+            }
+        }
+
+        public async Task ReplyToComment(string commentId, string message, string accessToken, string mediaPath = null)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var multipartContent = new MultipartFormDataContent();
+
+                    multipartContent.Add(new StringContent(message), "message");
+                    multipartContent.Add(new StringContent(accessToken), "access_token");
+
+                    if (!string.IsNullOrEmpty(mediaPath))
+                    {
+                        byte[] fileBytes = System.IO.File.ReadAllBytes(mediaPath);
+                        multipartContent.Add(new ByteArrayContent(fileBytes), "source", System.IO.Path.GetFileName(mediaPath));
+                    }
+
+                    string requestUrl = $"https://graph.facebook.com/v18.0/{commentId}/comments";
+
+                    HttpResponseMessage response;
+
+                    if (string.IsNullOrEmpty(mediaPath))
+                    {
+                        // Responde sem midia
+                        response = await client.PostAsync(requestUrl, multipartContent);
+                    }
+                    else
+                    {
+                        // Responde com midia
+                        response = await client.PostAsync(requestUrl, multipartContent);
+                    }
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Comentario respondido com sucesso.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Falha ao responder comentario. Erro: {response.StatusCode}");
+                        string responseContent = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine("Resposta do servidor: " + responseContent);
                     }
                 }
                 catch (Exception ex)
