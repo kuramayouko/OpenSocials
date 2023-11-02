@@ -1,35 +1,38 @@
 ﻿namespace OpenSocials.App_Code
 {
-    using Newtonsoft.Json;
+
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using System.Collections;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
-    struct Post
+    public class Post
     {
-        public string createdTime;
-        public string message;
-        public string pagePostId;
+        public string createdTime { get; set; }
+        public string message { get; set; }
+        public string pagePostId { get; set; }
+        public List<string> attachments { get; set; }
     }
 
-    struct Comment
+    public class Comment
     {
 
-        public string id;
-        public string message;
-        public Commenter from
+        public string id { get; set; }
+        public string message { get; set; }
+        public Commenter from { get; set; }
     }
 
-    struct Commenter
+    public class Commenter
     {
-        public string name;
-        public string id;
+        public string name { get; set; }
+        public string id { get; set; }
     }
 
-    struct CommentResponse
+    public class CommentResponse
     {
-        public List<Comment> Comments { get; set; }
+        public List<Comment> comments { get; set; }
     }
 
     public class Facebook
@@ -84,6 +87,8 @@
             return this.accessToken;
         }
 
+
+        //PageGetFeed needs redone
         public async Task<List<Post>> PageGetFeed()
         {
             using (HttpClient client = new HttpClient())
@@ -92,33 +97,65 @@
 
                 try
                 {
-                    string requestUrl = $"https://graph.facebook.com/v18.0/"+this.pageId+"/feed?access_token="+this.accessToken+";
+                    string requestUrl = $"https://graph.facebook.com/v18.0/" + this.pageId + "/feed?access_token=" + this.accessToken + "";
 
                     HttpResponseMessage response = await client.GetAsync(requestUrl);
 
                     if (response.IsSuccessStatusCode)
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
-                        
-                        posts = JsonConvert.DeserializeObject<List<Post>>(JObject.Parse(responseContent)["data"].ToString());
-                        if (data != null && data.Data != null)
+                        var data = JsonConvert.DeserializeObject<JObject>(responseContent);
+
+                        if (data != null && data["data"] != null)
                         {
-                            posts.AddRange(data.Data);
+                            foreach (var item in data["data"])
+                            {
+                                Post post = new Post
+                                {
+                                    createdTime = item["created_time"].ToString(),
+                                    message = item["message"] != null ? item["message"].ToString() : "",
+                                    pagePostId = item["id"].ToString()
+                                };
+
+                                if (item["attachments"] == null)
+                                {
+                                    if (attachmentsData != null && attachmentsData["data"] != null)
+                                    {
+                                        foreach (var attachment in attachmentsData["data"])
+                                        {
+                                            if (attachment["subattachments"] != null)
+                                            {
+                                                foreach (var subAttachment in attachment["subattachments"]["data"])
+                                                {
+                                                    if (subAttachment["media"] != null && subAttachment["media"]["image"] != null)
+                                                    {
+                                                    post.Attachments.Add(subAttachment["media"]["image"]["src"].ToString());
+                                                    }
+                                                }
+                                            }
+                                            else if (attachment["media"] != null && attachment["media"]["image"] != null)
+                                            {
+                                                post.Attachments.Add(attachment["media"]["image"]["src"].ToString());
+                                            }
+                                        }
+                                    }
+                                }      
+                                
+                            }
+                            posts.Add(post);
                         }
-
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Falha ao ler posts da pagina. Erro: {response.StatusCode}");
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Erro: " + ex.Message);
+                    Console.WriteLine($"Falha ao obter posts. Erro: {response.StatusCode}");
                 }
-
-                return posts;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+            return posts;
         }
 
         public async Task PagePostMessage(string message)
@@ -358,5 +395,46 @@
                 }
             }
         }
+
+        public async Task SchedulePost(string message, string scheduledTime, string accessToken, List<Media> mediaPaths = null)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var multipartContent = new MultipartFormDataContent();
+                    multipartContent.Add(new StringContent(message), "message");
+                    multipartContent.Add(new StringContent(scheduledTime), "published");
+                    multipartContent.Add(new StringContent(accessToken), "access_token");
+
+                    if (mediaPaths != null)
+                    {
+                        foreach (var mediaPath in mediaPaths)
+                        {
+                            byte[] fileBytes = System.IO.File.ReadAllBytes(mediaPath);
+                            multipartContent.Add(new ByteArrayContent(fileBytes), "source", System.IO.Path.GetFileName(mediaPath));
+                        }
+                    }
+
+                    HttpResponseMessage response = await client.PostAsync("https://graph.facebook.com/v18.0/me/feed", multipartContent);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Post scheduled successfully!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to schedule post. Status Code: {response.StatusCode}");
+                        string responseContent = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine("Server Response: " + responseContent);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+        }
+
     }
 }
