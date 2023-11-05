@@ -88,7 +88,7 @@
         }
 
 
-        //PageGetFeed needs redone
+        //PageGetFeed needs redone me/feed?fields=created_time,message,id,attachments{media,subattachments}&acess_token=
         public async Task<List<Post>> PageGetFeed()
         {
             using (HttpClient client = new HttpClient())
