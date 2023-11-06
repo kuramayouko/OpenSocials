@@ -1,6 +1,5 @@
 ﻿namespace OpenSocials.App_Code
 {
-
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
