@@ -17,7 +17,6 @@
 
     public class Comment
     {
-
         public string id { get; set; }
         public string message { get; set; }
         public Commenter from { get; set; }
@@ -37,21 +36,14 @@
     public class Facebook
     {
         private String appId { get; set; }
+
         private String appSecret { get; set; }
         private String redirectUri { get; set; }
         private String userId { get; set; }
         private String pageId { get; set; }
-        private String accessToken {set;}
 
-        private String authorizeUrl { get; set; }
+        private String accessToken { get; set; }
 
-        ///<summary>Abre pagina de login no facebook para autenticacao, necessario setar APPID e RedirectUri antes!</summary>
-        ///<return>Retorna uma URL que o usuario usara para autenticar</return>
-        public string GenerateCodeURL()
-        {
-            this.authorizeUrl = $"https://www.facebook.com/v18.0/dialog/oauth?client_id="+this.appId+"&redirect_uri="+this.redirectUri;
-            return this.authorizeUrl;
-        }
 
         ///<summary>Gera um token permanente de acesso do usuario e da pagina, necessario autenticar primeiro![GenerateCodeURL]</summary>
         ///<param name="authorizationCode">Codigo de autorizacao gerado pelo methodo [GenerateCodeURL]</param>
@@ -71,16 +63,16 @@
 
             //Token usuario de termo longo
             var tokenUserPerm = $"https://graph.facebook.com/v18/oauth/access_token?grant_type=fb_exchange_token&client_id="+this.appId+"&client_secret="+this.appSecret+"&fb_exchange_token="+this.accessToken;
-            var response = await httpClient.GetAsync(tokenPage);
-            var content = await response.Content.ReadAsStringAsync();
-            var tokenResponse = JsonConvert.DeserializeObject<dynamic>(content);
+            response = await httpClient.GetAsync(tokenUserPerm);
+            content = await response.Content.ReadAsStringAsync();
+            tokenResponse = JsonConvert.DeserializeObject<dynamic>(content);
             this.accessToken = tokenResponse.access_token;
 
             //Token de pagina permanente
-            var tokenPagePerm = $"https://graph.facebook.com/v18/"+this.facebookUserId+"/accounts?access_token="+this.accessToken
-            var response = await httpClient.GetAsync(tokenPage);
-            var content = await response.Content.ReadAsStringAsync();
-            var tokenResponse = JsonConvert.DeserializeObject<dynamic>(content);
+            var tokenPagePerm = $"https://graph.facebook.com/v18/{this.userId}/accounts?access_token={this.accessToken}";
+            response = await httpClient.GetAsync(tokenPagePerm);
+            content = await response.Content.ReadAsStringAsync();
+            tokenResponse = JsonConvert.DeserializeObject<dynamic>(content);
             this.accessToken = tokenResponse.access_token;
 
             return this.accessToken;
@@ -118,43 +110,43 @@
 
                                 if (item["attachments"] == null)
                                 {
-                                    if (attachmentsData != null && attachmentsData["data"] != null)
+
+                                    foreach (var attachment in item["attachment"]["data"])
                                     {
-                                        foreach (var attachment in attachmentsData["data"])
+                                        if (attachment["subattachments"] != null)
                                         {
-                                            if (attachment["subattachments"] != null)
+                                            foreach (var subAttachment in attachment["subattachments"]["data"])
                                             {
-                                                foreach (var subAttachment in attachment["subattachments"]["data"])
+                                                if (subAttachment["media"] != null && subAttachment["media"]["image"] != null)
                                                 {
-                                                    if (subAttachment["media"] != null && subAttachment["media"]["image"] != null)
-                                                    {
-                                                    post.Attachments.Add(subAttachment["media"]["image"]["src"].ToString());
-                                                    }
+                                                    post.attachments.Add(subAttachment["media"]["image"]["src"].ToString());
                                                 }
                                             }
-                                            else if (attachment["media"] != null && attachment["media"]["image"] != null)
-                                            {
-                                                post.Attachments.Add(attachment["media"]["image"]["src"].ToString());
-                                            }
+                                        }
+                                        else if (attachment["media"] != null && attachment["media"]["image"] != null)
+                                        {
+                                            post.attachments.Add(attachment["media"]["image"]["src"].ToString());
                                         }
                                     }
-                                }      
-                                
+                                }
+                                posts.Add(post);
                             }
-                            posts.Add(post);
                         }
+
+                        return posts;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Falha ao obter posts. Erro: {response.StatusCode}");
+                        return null;
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine($"Falha ao obter posts. Erro: {response.StatusCode}");
+                    Console.WriteLine("Erro: " + ex.Message);
+                    return null;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro: " + ex.Message);
-            }
-            return posts;
         }
 
         public async Task PagePostMessage(string message)
@@ -189,7 +181,7 @@
             }
         }
 
-        public async Task PageEditPostMessage(string updatedMessage, string postId, string accessToken)
+        public async Task PageEditPostMessage(string updatedMessage, Post post, string accessToken)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -201,7 +193,7 @@
                         new KeyValuePair<string, string>("access_token", accessToken)
                     });
 
-                    var response = await client.PostAsync($"https://graph.facebook.com/v18.0/"+this.postId, content);
+                    var response = await client.PostAsync($"https://graph.facebook.com/v18.0/"+post.pagePostId, content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -224,8 +216,8 @@
         public async Task PagePostMessageMedia(string message, List<Media> mediaList)
         {
             using (HttpClient client = new HttpClient())
-            { 
-
+            {
+                HttpResponseMessage response;
                 try
                 {
                     var multipartContent = new MultipartFormDataContent();
@@ -235,29 +227,29 @@
 
                     for (int i = 0; i < mediaList.Count; i++)
                     {
-                        string mediaType = mediaList[i].mediaType;
-                        string base64Data = mediaList[i].ConvertToBase64();
+                        string mediaType = mediaList[i].MediaType;
+                        string base64Data = mediaList[i].Base64;
                         multipartContent.Add(new StringContent(base64Data), $"source_data[{i}]");
 
                         // Opcional verifica se ha titulo ou descricao da foto
-                        if (!string.IsNullOrEmpty(mediaList[i].mediaTitle))
+                        if (!string.IsNullOrEmpty(mediaList[i].MediaTitle))
                         {
-                            multipartContent.Add(new StringContent(mediaList[i].mediaTitle), $"title[{i}]");
+                            multipartContent.Add(new StringContent(mediaList[i].MediaTitle), $"title[{i}]");
                         }
 
                         if (!string.IsNullOrEmpty(mediaList[i].MediaDescription))
                         {
-                            multipartContent.Add(new StringContent(mediaList[i].mediaDescription), $"description[{i}]");
+                            multipartContent.Add(new StringContent(mediaList[i].MediaDescription), $"description[{i}]");
                         }
                     }
 
-                    if (mediaList[0].mediaType == "photo")
+                    if (mediaList[0].MediaType == "photo")
                     {
-                        HttpResponseMessage response = await client.PostAsync($"https://graph.facebook.com/v18.0/"+this.pageId+"/photos", multipartContent);
+                        response = await client.PostAsync($"https://graph.facebook.com/v18.0/"+this.pageId+"/photos", multipartContent);
                     }
                     else
                     {
-                        HttpResponseMessage response = await client.PostAsync($"https://graph.facebook.com/v18.0/"+this.pageId+"/videos", multipartContent);
+                        response = await client.PostAsync($"https://graph.facebook.com/v18.0/"+this.pageId+"/videos", multipartContent);
                     }
 
                     if (response.IsSuccessStatusCode)
@@ -328,7 +320,7 @@
 
                         if (data != null)
                         {
-                            comments = data.Comments;
+                            comments = data.comments;
                         }
                     }
                     else
@@ -410,8 +402,8 @@
                     {
                         foreach (var mediaPath in mediaPaths)
                         {
-                            byte[] fileBytes = System.IO.File.ReadAllBytes(mediaPath);
-                            multipartContent.Add(new ByteArrayContent(fileBytes), "source", System.IO.Path.GetFileName(mediaPath));
+                            byte[] fileBytes = System.IO.File.ReadAllBytes(mediaPath.MediaLocalUrl);
+                            multipartContent.Add(new ByteArrayContent(fileBytes), "source", System.IO.Path.GetFileName(mediaPath.MediaLocalUrl));
                         }
                     }
 

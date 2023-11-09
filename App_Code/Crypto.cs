@@ -1,12 +1,13 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Collections;
 
 public class Crypto
 {
     // key = chave secreta , iv = vetor de inicializacao
-    private readonly byte[] key;
-    private readonly byte[] iv; 
+    private byte[] key;
+    private byte[] iv; 
      
 	
 	///<summary>Criptografa</summary>
@@ -16,10 +17,10 @@ public class Crypto
     {
         using (Aes aesAlg = Aes.Create())
         {
-            aesAlg.key = this.key;
-            aesAlg.iv = this.iv;
+            aesAlg.Key = this.key;
+            aesAlg.IV = this.iv;
 
-            ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.key, aesAlg.iv);
+            ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
             using (MemoryStream msEncrypt = new MemoryStream())
             {
@@ -60,40 +61,39 @@ public class Crypto
             }
         }
     }
-    
+
     private byte[] RandomKey(int keySize)
     {
-        using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+        using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
         {
             byte[] key = new byte[keySize / 8];
             rng.GetBytes(key);
             return key;
         }
     }
-
     private byte[] RandomIV()
     {
-        using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+        using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
         {
             byte[] iv = new byte[16];
             rng.GetBytes(iv);
             return iv;
         }
     }
-    
+
     private void SaveKeyToFile(byte[] key, string filePath)
     {
         System.IO.File.WriteAllBytes(filePath, this.key);
         System.IO.File.WriteAllBytes(filePath, this.iv);
     }
 
-    private byte[] ReadKeyFromFile(string filePath)
+    private List<byte[]> ReadKeyFromFile(string filePath)
     {
-		List<byte> keys;
-		
-		keys.add(System.IO.File.ReadAllBytes(filePath));
-		keys.add(System.IO.File.ReadAllBytes(filePath));
-		
+        List<byte[]> keys = new List<byte[]>();
+
+        keys.Add(System.IO.File.ReadAllBytes(filePath));
+		keys.Add(System.IO.File.ReadAllBytes(filePath));
+
         return keys;
     }
 }
