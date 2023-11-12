@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace OpenSocials.Pages
@@ -43,39 +44,36 @@ namespace OpenSocials.Pages
             }
             return Page();
         }
+   
+		private async Task<dynamic> GetFacebookUserDetails(string accessToken)
+		{
+			using (HttpClient client = new HttpClient())
+			{
+				var response = await client.GetAsync($"https://graph.facebook.com/me?fields=id,name,email&access_token={accessToken}");
+				response.EnsureSuccessStatusCode();
 
-        private async Task<string> ExchangeForLongLivedToken(string shortLivedToken)
-        {
-            string appId = "";
-            string appSecret = "";
+				string json = await response.Content.ReadAsStringAsync();
+				dynamic data = JsonConvert.DeserializeObject(json);
 
-            using (HttpClient client = new HttpClient())
-            {
-                var response = await client.GetAsync($"https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id={appId}&client_secret={appSecret}&fb_exchange_token={shortLivedToken}");
-                response.EnsureSuccessStatusCode();
+				return data;
+			}
+		}
 
-                dynamic data = "";
+		private async Task<string> ExchangeForLongLivedToken(string shortLivedToken)
+		{
+			string appId = "";
+			string appSecret = "";
 
-                //data = await response.Content.ReadAsAsync();
+			using (HttpClient client = new HttpClient())
+			{
+				var response = await client.GetAsync($"https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id={appId}&client_secret={appSecret}&fb_exchange_token={shortLivedToken}");
+				response.EnsureSuccessStatusCode();
 
-                return data.access_token;
-            }
-        }
+				string json = await response.Content.ReadAsStringAsync();
+				dynamic data = JsonConvert.DeserializeObject(json);
 
-        private async Task<dynamic> GetFacebookUserDetails(string accessToken)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                var response = await client.GetAsync($"https://graph.facebook.com/me?fields=id,name,email&access_token={accessToken}");
-                response.EnsureSuccessStatusCode();
-
-                dynamic data = "";
-
-                //data = await response.Content.ReadAsAsync();
-
-                return data;
-                
-            }
-        }
+				return data.access_token;
+			}
+		}
     }
 }

@@ -6,7 +6,9 @@ namespace OpenSocials.App_Code
 
 	public class AppConfig
 	{
+		[Key]
 		public int Id { get; set; }
+		
 		public string FbUserToken { get; set; }
 		public string FbPageToken { get; set; }
 		public string InstaUserToken { get; set; }
@@ -17,19 +19,18 @@ namespace OpenSocials.App_Code
 	
 	public class DataContext : DbContext
 	{
-		protected readonly IConfiguration Configuration;
-
-		public DataContext(IConfiguration configuration)
+		//Movido para o Startup.cs
+		//protected override void OnConfiguring(DbContextOptionsBuilder options)
+		//{
+			//options.UseSqlite(Configuration.GetConnectionString("SQLDatabase"));
+		//}
+		
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			Configuration = configuration;
-		}
-
-		protected override void OnConfiguring(DbContextOptionsBuilder options)
-		{
-			options.UseSqlite(Configuration.GetConnectionString("SQLDatabase"));
+			// Config com foreign key aqui
 		}
 		
-		// Add todas classes que representam dados do BD
+		// Add DbSet de todas classes que representam dados do BD
 		public DbSet<AppConfig> AppConfigs { get; set; }
 	}
 }
