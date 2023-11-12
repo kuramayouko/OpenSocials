@@ -16,7 +16,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<DataContext>(options =>
             options.UseSqlite(Configuration.GetConnectionString("SQLDatabase")));
 
         services.AddRazorPages();
