@@ -78,8 +78,8 @@
             return this.accessToken;
         }
 
-
-        //PageGetFeed needs redone me/feed?fields=created_time,message,id,attachments{media,subattachments}&acess_token=
+        ///<summary>Retorna uma lista com todos os posts e comentarios da pagina</summary>
+        ///<return>Retorna uma lista do tipo Post</return>        
         public async Task<List<Post>> PageGetFeed()
         {
             using (HttpClient client = new HttpClient())
@@ -88,7 +88,7 @@
 
                 try
                 {
-                    string requestUrl = $"https://graph.facebook.com/v18.0/" + this.pageId + "/feed?access_token=" + this.accessToken + "";
+                    string requestUrl = $"https://graph.facebook.com/v18.0/{this.pageId}/feed?fields=created_time,message,id,attachments{{media,subattachments}}&access_token={this.accessToken}"
 
                     HttpResponseMessage response = await client.GetAsync(requestUrl);
 
@@ -148,7 +148,80 @@
                 }
             }
         }
+        
+        ///<summary>Retorna uma lista com todos os posts e comentarios da pagina</summary>
+		///<param name="postLimit">Numero de post que deseja retornar. Ex: 3 retorna apenas os 3 ultimos posts</param>
+        ///<return>Retorna uma lista do tipo Post</return>        
+        public async Task<List<Post>> PageGetLimitedFeed(int postLimit)
+		{
+			using (HttpClient client = new HttpClient())
+			{
+				List<Post> posts = new List<Post>();
 
+				try
+				{
+					
+					string requestUrl = $"https://graph.facebook.com/v18.0/{this.pageId}/feed?fields=created_time,message,id,attachments{{media,subattachments}}&access_token={this.accessToken}&limit={postLimit}";
+
+					HttpResponseMessage response = await client.GetAsync(requestUrl);
+
+					if (response.IsSuccessStatusCode)
+					{
+						var responseContent = await response.Content.ReadAsStringAsync();
+						var data = JsonConvert.DeserializeObject<JObject>(responseContent);
+
+						if (data != null && data["data"] != null)
+						{
+							foreach (var item in data["data"])
+							{
+								Post post = new Post
+								{
+									createdTime = item["created_time"].ToString(),
+									message = item["message"] != null ? item["message"].ToString() : "",
+									pagePostId = item["id"].ToString()
+								};
+
+								if (item["attachments"] != null)
+								{
+									foreach (var attachment in item["attachments"]["data"])
+									{
+										if (attachment["subattachments"] != null)
+										{
+											foreach (var subAttachment in attachment["subattachments"]["data"])
+											{
+												if (subAttachment["media"] != null && subAttachment["media"]["image"] != null)
+												{
+													post.attachments.Add(subAttachment["media"]["image"]["src"].ToString());
+												}
+											}
+										}
+										else if (attachment["media"] != null && attachment["media"]["image"] != null)
+										{
+											post.attachments.Add(attachment["media"]["image"]["src"].ToString());
+										}
+									}
+								}
+								
+								posts.Add(post);
+							}
+						}
+
+						return posts;
+					}
+					else
+					{
+						Console.WriteLine($"Falha ao obter posts. Erro: {response.StatusCode}");
+						return null;
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Erro: " + ex.Message);
+					return null;
+				}
+			}
+		}
+		
         public async Task PagePostMessage(string message)
         {
             using (HttpClient client = new HttpClient())
