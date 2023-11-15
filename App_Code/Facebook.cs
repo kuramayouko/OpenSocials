@@ -484,18 +484,18 @@
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("Post scheduled successfully!");
+                        Console.WriteLine("Post agendado com sucesso");
                     }
                     else
                     {
-                        Console.WriteLine($"Failed to schedule post. Status Code: {response.StatusCode}");
+                        Console.WriteLine($"Falha ao agendar post. Erro: {response.StatusCode}");
                         string responseContent = await response.Content.ReadAsStringAsync();
                         Console.WriteLine("Server Response: " + responseContent);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.WriteLine("Erro: " + ex.Message);
                 }
             }
         }

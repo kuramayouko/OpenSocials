@@ -189,7 +189,7 @@ namespace OpenSocials.App_Code
 			{
 				try
 				{
-					string requestUrl = $"https://graph.instagram.com/v12.0/{this.pageId}/children?access_token={this.accessToken}";
+					string requestUrl = $"https://graph.instagram.com/v18.0/{this.pageId}/children?access_token={this.accessToken}";
 
 					
 					var mediaArray = new List<object>();
@@ -217,18 +217,18 @@ namespace OpenSocials.App_Code
 
 					if (response.IsSuccessStatusCode)
 					{
-						Console.WriteLine("Carousel post created successfully.");
+						Console.WriteLine("Post criado com sucesso.");
 						return true;
 					}
 					else
 					{
-						Console.WriteLine($"Failed to create carousel post. Error: {response.StatusCode}");
+						Console.WriteLine($"Falha ao criar post. Erro: {response.StatusCode}");
 						return false;
 					}
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine("Error: " + ex.Message);
+					Console.WriteLine("Erro: " + ex.Message);
 					return false;
 				}
 			}
