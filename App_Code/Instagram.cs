@@ -233,5 +233,107 @@ namespace OpenSocials.App_Code
 				}
 			}
 		}
+		
+		public async Task<bool> EditPostCaption(string postId, string newCaption)
+		{
+			using (HttpClient client = new HttpClient())
+			{
+				try
+				{
+					string requestUrl = $"https://graph.instagram.com/v18.0/{postId}?access_token={this.accessToken}";
+
+					var payload = new
+					{
+						caption = newCaption
+					};
+
+					var content = new StringContent(JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
+
+					HttpResponseMessage response = await client.PostAsync(requestUrl, content);
+
+					if (response.IsSuccessStatusCode)
+					{
+						Console.WriteLine("Post caption updated successfully.");
+						return true;
+					}
+					else
+					{
+						Console.WriteLine($"Failed to update post caption. Error: {response.StatusCode}");
+						return false;
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error: " + ex.Message);
+					return false;
+				}
+			}
+		}
+
+		public async Task<bool> DeletePost(string postId)
+		{
+			using (HttpClient client = new HttpClient())
+			{
+				try
+				{
+					string requestUrl = $"https://graph.instagram.com/v18.0/{postId}?access_token={this.accessToken}";
+
+					HttpResponseMessage response = await client.DeleteAsync(requestUrl);
+
+					if (response.IsSuccessStatusCode)
+					{
+						Console.WriteLine("Post deleted successfully.");
+						return true;
+					}
+					else
+					{
+						Console.WriteLine($"Failed to delete post. Error: {response.StatusCode}");
+						return false;
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error: " + ex.Message);
+					return false;
+				}
+			}
+		}
+		
+		public async Task<bool> ReplyToPost(string postId, string commentText)
+		{
+			using (HttpClient client = new HttpClient())
+			{
+				try
+				{
+					string requestUrl = $"https://graph.instagram.com/v18.0/{postId}/comments?access_token={this.accessToken}";
+
+					var payload = new
+					{
+						text = commentText
+					};
+
+					var content = new StringContent(JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
+
+					HttpResponseMessage response = await client.PostAsync(requestUrl, content);
+
+					if (response.IsSuccessStatusCode)
+					{
+						Console.WriteLine("Comment added successfully.");
+						return true;
+					}
+					else
+					{
+						Console.WriteLine($"Failed to add comment. Error: {response.StatusCode}");
+						return false;
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error: " + ex.Message);
+					return false;
+				}
+			}
+
+		}
 	}
 }
