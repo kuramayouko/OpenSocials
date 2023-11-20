@@ -33,8 +33,8 @@ namespace OpenSocials.Pages
 			if (appConfig != null)
 			{
 				//Pegar os valores do BD
-				string appId = "";
-				string redirectUri = "";
+				string appId = _context.CurrentValue.AppId;
+				string appSecret = _context.CurrentValue.AppSecret;
 
 				string facebookLoginUrl = $"https://www.facebook.com/v18.0/dialog/oauth?client_id={appId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&response_type=token";
 
@@ -79,8 +79,6 @@ namespace OpenSocials.Pages
 
 		private async Task<string> ExchangeForLongLivedToken(string shortLivedToken)
 		{
-			string appId = "";
-			string appSecret = "";
 
 			using (HttpClient client = new HttpClient())
 			{
