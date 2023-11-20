@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
@@ -17,16 +18,33 @@ namespace OpenSocials.Pages
         {
             _configuration = configuration;
         }
+        
+        private readonly DataContext _context;
+
+		public IndexModel(DataContext context)
+		{
+			_context = context;
+		}
 
         public void OnGet()
         {
-            //Pegar os valores do BD
-            string appId = "";
-            string redirectUri = "";
+			AppConfig appConfig = _context.AppConfigs.FirstOrDefault();
 
-            string facebookLoginUrl = $"https://www.facebook.com/v18.0/dialog/oauth?client_id={appId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&response_type=token";
+			if (appConfig != null)
+			{
+				//Pegar os valores do BD
+				string appId = "";
+				string redirectUri = "";
 
-            Redirect(facebookLoginUrl);
+				string facebookLoginUrl = $"https://www.facebook.com/v18.0/dialog/oauth?client_id={appId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&response_type=token";
+
+				Redirect(facebookLoginUrl);
+			}
+			else
+			{
+				// Redirecionar pagina erro
+			}
+
         }
 
         public async Task<IActionResult> OnGetCallback(string access_token)
