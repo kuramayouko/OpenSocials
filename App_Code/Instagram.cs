@@ -253,18 +253,18 @@ namespace OpenSocials.App_Code
 
 					if (response.IsSuccessStatusCode)
 					{
-						Console.WriteLine("Post caption updated successfully.");
+						Console.WriteLine("Post atualizado com sucesso.");
 						return true;
 					}
 					else
 					{
-						Console.WriteLine($"Failed to update post caption. Error: {response.StatusCode}");
+						Console.WriteLine($"Falha ao atualizar post. Erro: {response.StatusCode}");
 						return false;
 					}
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine("Error: " + ex.Message);
+					Console.WriteLine("Erro: " + ex.Message);
 					return false;
 				}
 			}
@@ -282,18 +282,18 @@ namespace OpenSocials.App_Code
 
 					if (response.IsSuccessStatusCode)
 					{
-						Console.WriteLine("Post deleted successfully.");
+						Console.WriteLine("Post deletado com sucesso");
 						return true;
 					}
 					else
 					{
-						Console.WriteLine($"Failed to delete post. Error: {response.StatusCode}");
+						Console.WriteLine($"Falha ao deletar post. Erro: {response.StatusCode}");
 						return false;
 					}
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine("Error: " + ex.Message);
+					Console.WriteLine("Erro: " + ex.Message);
 					return false;
 				}
 			}
@@ -318,18 +318,18 @@ namespace OpenSocials.App_Code
 
 					if (response.IsSuccessStatusCode)
 					{
-						Console.WriteLine("Comment added successfully.");
+						Console.WriteLine("Comentario postado com sucesso.");
 						return true;
 					}
 					else
 					{
-						Console.WriteLine($"Failed to add comment. Error: {response.StatusCode}");
+						Console.WriteLine($"Falha ao postar comentario. Erro: {response.StatusCode}");
 						return false;
 					}
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine("Error: " + ex.Message);
+					Console.WriteLine("Erro: " + ex.Message);
 					return false;
 				}
 			}
