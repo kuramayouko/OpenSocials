@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OpenSocials.Pages
 {
-    public class CadNoticiasModel : PageModel
+    public class CreateNewsModel : PageModel
     {
         public void OnGet()
         {

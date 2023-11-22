@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OpenSocials.Pages
 {
-    public class ChatBotModel : PageModel
+    public class ViewNewsModel : PageModel
     {
         public void OnGet()
         {
