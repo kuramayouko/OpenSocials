@@ -16,10 +16,10 @@ namespace OpenSocials.App_Code
 		public string ThumbnailUrl { get; set; }
 		public string Permalink { get; set; }
 		public string Timestamp { get; set; }
-		public List<Insta_InstaComment> InstaComments { get; set; }
+		public List<InstaComment> InstaComments { get; set; }
 	}
 
-	public class InstaInstaComment
+	public class InstaComment
 	{
 		public string Timestamp { get; set; }
 		public string Text { get; set; }
@@ -151,13 +151,13 @@ namespace OpenSocials.App_Code
 				{
 					string requestUrl = $"https://graph.instagram.com/v18.0/{this.pageId}/media?access_token={this.accessToken}";
 
-					
-					var payload = new
-					{
-						caption = media.MediaTitle,
-						media_type = media.MediaType,
-						...(media.MediaType == "photo" ? new { image_base64 = media.Base64 } : new { video_url = media.MediaLocalUrl }),
-					};
+
+					var payload = "";
+					//{
+					//	caption = media.MediaTitle,
+					//	media_type = media.MediaType,
+					//	...(media.MediaType == "photo" ? new { image_base64 = media.Base64 } : new { video_url = media.MediaLocalUrl }),
+					//};
 
 					var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
 
@@ -195,11 +195,11 @@ namespace OpenSocials.App_Code
 					var mediaArray = new List<object>();
 					foreach (var media in mediaList)
 					{
-						mediaArray.Add(new
-						{
-							media_type = media.MediaType,
-							...(media.MediaType == "photo" ? new { image_base64 = media.Base64 } : new { video_url = media.MediaLocalUrl }),
-						});
+						//mediaArray.Add(new
+						//{
+						//	media_type = media.MediaType,
+						//	...(media.MediaType == "photo" ? new { image_base64 = media.Base64 } : new { video_url = media.MediaLocalUrl }),
+						//});
 					}
 
 					

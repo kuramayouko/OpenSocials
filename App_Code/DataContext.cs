@@ -3,8 +3,9 @@ namespace OpenSocials.App_Code
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
     using Microsoft.EntityFrameworkCore.Sqlite;
+    using System.ComponentModel.DataAnnotations;
 
-	public class AppConfig
+    public class AppConfig
 	{
 		[Key]
 		public int Id { get; set; }

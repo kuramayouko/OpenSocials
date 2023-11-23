@@ -7,12 +7,16 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using OpenSocials.App_Code;
 
 namespace OpenSocials.Pages
 {
     public class FacebookAuthModel : PageModel
     {
         private readonly IConfiguration _configuration;
+		private String appId;
+		private String appSecret;
+		private String redirectUri;
 
         public FacebookAuthModel(IConfiguration configuration)
         {
@@ -21,11 +25,6 @@ namespace OpenSocials.Pages
         
         private readonly DataContext _context;
 
-		public IndexModel(DataContext context)
-		{
-			_context = context;
-		}
-
         public void OnGet()
         {
 			AppConfig appConfig = _context.AppConfigs.FirstOrDefault();
@@ -33,8 +32,8 @@ namespace OpenSocials.Pages
 			if (appConfig != null)
 			{
 				//Pegar os valores do BD
-				string appId = _context.CurrentValue.AppId;
-				string appSecret = _context.CurrentValue.AppSecret;
+				this.appId = appConfig.AppId;
+				this.appSecret = appConfig.AppSecret;
 
 				string facebookLoginUrl = $"https://www.facebook.com/v18.0/dialog/oauth?client_id={appId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&response_type=token";
 

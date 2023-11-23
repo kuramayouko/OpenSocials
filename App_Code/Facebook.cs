@@ -88,7 +88,7 @@
 
                 try
                 {
-                    string requestUrl = $"https://graph.facebook.com/v18.0/{this.pageId}/feed?fields=created_time,message,id,attachments{{media,subattachments}}&access_token={this.accessToken}"
+                    string requestUrl = $"https://graph.facebook.com/v18.0/{this.pageId}/feed?fields=created_time,message,id,attachments{{media,subattachments}}&access_token={this.accessToken}";
 
                     HttpResponseMessage response = await client.GetAsync(requestUrl);
 
