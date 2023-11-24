@@ -1,0 +1,11 @@
+.update {
+    background-color: orange;
+    color: white;
+    font-size: bold;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    font-size: bold;
+}

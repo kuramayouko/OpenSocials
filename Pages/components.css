@@ -1,0 +1,36 @@
+/* navbar */
+
+.divBase {
+    max-width: 60vw;
+    padding: 1rem;
+}
+
+.navbar-title {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: inherit;
+}
+
+.icon {
+    color: white;
+    font-size: 18px;
+}
+
+/* navbar */
+
+
+/* btn forms */
+
+.form-signin {
+    max-width: 60vw;
+    padding: 1rem;
+}
+
+.submit {
+    background-color: #d63384;
+    color: white;
+    font-size: bold;
+}
+
+/* btn forms */

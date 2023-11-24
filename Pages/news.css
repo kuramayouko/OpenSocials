@@ -1,0 +1,32 @@
+strong {
+    margin: 5%;
+}
+
+.news-button {
+    background-color: #E0004B;
+    color: white;
+    font-size: bold;
+    margin: 10px;
+
+}
+
+body:last-child {
+    background-color: #212529;
+    position: relative;
+    z-index: 1;
+    color: white;
+
+}
+
+.card {
+    z-index: 100;
+    margin-top: -50px;
+    position: relative;
+}
+
+.col {
+    margin-left: 2.5%;
+    margin-bottom: 5%;
+    width: 29%;
+    margin-right: 1.5%;
+}

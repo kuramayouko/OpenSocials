@@ -5,779 +5,393 @@
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
-  <head>
-    <script src="../assets/js/color-modes.js"></script>
 
-    <meta charset="utf-8" />
-    <meta name="Visualizarport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
+<head>
+  <script src="../assets/js/color-modes.js"></script>
 
-    <title>Bons Fluídos - Notícias</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.118.2" />
+  <title>Bons Fluídos - Home</title>
 
-    <link
-      rel="canonical"
-      href="https://getbootstrap.com/docs/5.3/examples/album/"
-    />
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@("docsearch")/css@3"
-    />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-    />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/components.css" />
+  <link rel="stylesheet" href="/news.css" />
 
-    <style>
-      strong {
-        margin: 5%;
-      }
+</head>
 
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
-      @("media") (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
 
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, 0.1);
-        border: solid rgba(0, 0, 0, 0.15);
-        border-width: 1px 0;
-        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-      }
+  <!-- header -->
+  <header data-bs-theme="dark">
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex align-items-center justify-content-space-between">
+        <div class="d-flex align-items-center">
+          <a href="news.html" class="navbar-brand d-flex align-items-center navbar-title">
+            <image class="mx-3" src="../assets/bons-fluidos-logo.png" width="60"></image>
+          </a>
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+          <a href="news.html" class="navbar-title mx-3">
+            <i class="bi-newspaper icon mx-2"></i>
+            Notícias</a>
 
-      .bi {
-        vertical-align: -0.125em;
-        fill: currentColor;
-      }
+          <a href="about.html" class="navbar-title mx-3">
+            <i class="bi-info-circle icon mx-2"></i>Sobre</a>
+          <a href="logs.html" class="navbar-title mx-3">
+            <i class="bi-person-lines-fill icon mx-2"></i>Logs</a>
 
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-y: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .news-button {
-        background-color: #d63384;
-        color: white;
-        font-size: bold;
-        margin: 5px;
-      }
-
-      .news-view {
-        background-color: purple;
-        color: white;
-        font-size: bold;
-        margin: 5px;
-      }
-      .news-update {
-        background-color: orange;
-        color: white;
-        font-size: bold;
-        margin: 5px;
-      }
-
-      .navbar-title {
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        text-decoration: inherit;
-      }
-
-      .icon {
-        color: white;
-        font-size: 18px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-
-    <header data-bs-theme="dark">
-      <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div
-          class="container d-flex align-items-center justify-content-space-between"
-        >
-          <div class="d-flex align-items-center">
-            <a
-              href="news.html"
-              class="navbar-brand d-flex align-items-center navbar-title"
-            >
-              <image
-                class="mx-3"
-                src="../assets/bons-fluidos-logo.png"
-                width="60"
-              ></image>
-            </a>
-
-            <a href="news.html" class="navbar-title mx-3">
-              <i class="bi-newspaper icon mx-2"></i>
-              Notícias</a
-            >
-
-            <a href="about.html" class="navbar-title mx-3">
-              <i class="bi-info-circle icon mx-2"></i>Sobre</a
-            >
-            <a href="logs.html" class="navbar-title mx-3">
-              <i class="bi-person-lines-fill icon mx-2"></i>Logs</a
-            >
-            <a href="verify-news.html" class="navbar-title mx-3">
-              <i class="bi-person-check-fill icon mx-2"></i>Controle de
-              Noticías</a
-            >
-          </div>
-          <div class="d-flex align-items-center">
-            <i class="bi-box-arrow-in-left icon"></i>
-            <a href="sign-in.html" class="navbar-title mx-2">Sair</a>
-          </div>
+          <a href="verify-news.html" class="navbar-title mx-3">
+            <i class="bi-person-check-fill icon mx-2"></i>Controle de
+            Noticías</a>
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="bi-box-arrow-in-left icon"></i>
+          <a href="sign-in.html" class="navbar-title mx-2">Sair</a>
         </div>
       </div>
-    </header>
-
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Principais Notícias</h1>
-          <p class="lead text-body-secondary">
-            Tenha acesso a todas as noticias postadas, gerencie as noticias
-            diretamente do seu navegador, crie noticias, edite noticias, apague,
-            entre outras funcionalidades.
-          </p>
-          <p>
-            <a href="create-news.html" class="btn my-2 news-button">
-              <i class="bi-plus-circle icon"></i>
-              Criar uma notícia</a
-            >
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- Banner -->
-
-    <!-- Card com as notícias -->
-    <main>
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <h6 class="card-title">Titulo Noticia</h6>
-
-                  <p class="card-text">
-                    Aqui irá ter a descrição da noticia com a descrição base da
-                    noticia para o usuário ter uma base de qual o tema de
-                    noticia está sendo publicado.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <p>
-                        <a href="view-news.html" class="btn my-2 news-view">
-                          <i class="bi-eye icon"></i>
-                          Visualizar</a
-                        >
-                      </p>
-
-                      <p>
-                        <a href="edit-news.html" class="btn my-2 news-update">
-                          <i class="bi-pencil icon"></i>
-                          Editar
-                        </a>
-                      </p>
-                    </div>
-                    <small class="text-body-secondary">22/11/2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <!-- Card com as notícias -->
-
-    <!-- Footer -->
-    <footer class="bg-dark text-center text-white">
-      <!-- Grid container -->
-      <div class="container p-4">
-        <!-- Section: Social media -->
-        <section class="mb-4"></section>
-
-        <!-- Section: Text -->
-        <section class="mb-4">
-          <p>
-            O projeto tem como objetivo levar dignidade para meninas que têm o
-            direito à educação prejudicado por menstruarem, seja pela falta de
-            absorventes ou por não saberem lidar com a transição de fase em suas
-            vidas.
-          </p>
-        </section>
-        <!-- Section: Text -->
-
-        <!-- Section: Links -->
-        <section class="">
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Notícias</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="create-news.html" class="text-white"
-                    >Criação de Noticias</a
-                  >
-                </li>
-                <li>
-                  <a href="verify-news.html" class="text-white"
-                    >Controle de Noticias</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">OUTROS</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="logs.html" class="text-white">Logs</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Sobre</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="about.html" class="text-white">Saiba mais</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Contatos</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a
-                    href="https://www.instagram.com/bonsfluidosutfpr/"
-                    target="_blank"
-                    class="text-white"
-                    >Instagram</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="mailto:katiascannavino@utfpr.edu.br"
-                    class="text-white"
-                    >Email</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="http://www.utfpr.edu.br/campus/cornelioprocopio/extensao/atividades-extensao/projeto-de-extensao-bons-fluidos"
-                    target="_blank"
-                    class="text-white"
-                    >UTFPR</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!--Grid row-->
-        </section>
-        <!-- Section: Links -->
-      </div>
-      <!-- Grid container -->
-    </footer>
-
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-      © 2023 Copyright:
-      <a
-        class="text-white"
-        href="https://www.instagram.com/bonsfluidosutfpr/"
-        target="_blank"
-        >Bons Fluídos</a
-      >
     </div>
-    <!-- Copyright -->
-  </body>
+  </header>
+  <!-- header -->
+
+  <!-- Banner -->
+  <section class="py-5 text-center container" id="cards">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Principais Notícias</h1>
+        <p class="lead">
+          Tenha acesso a todas as notícias postadas, gerencie as notícias
+          diretamente do seu navegador, crie notícias, edite notícias,
+          apague, entre outras funcionalidades.
+        </p>
+        <p>
+          <a href=" modify-news.html" class="btn my-2 news-button" style="background-color: #E0004B;">Criar uma
+            notícia</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- Banner -->
+
+  <!-- Card com as notícias -->
+  <main>
+    <div class="card">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                Thumbnail
+              </text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <p>
+                    <a href="" class="btn my-2 news-button">View</a>
+                  </p>
+                  <p>
+                    <a href="edit-news.html" class="btn my-2 news-button">Edit</a>
+                  </p>
+
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+
+  </main>
+
+
+
+</body>
+
 </html>
