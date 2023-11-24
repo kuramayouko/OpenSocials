@@ -152,12 +152,13 @@ namespace OpenSocials.App_Code
 					string requestUrl = $"https://graph.instagram.com/v18.0/{this.pageId}/media?access_token={this.accessToken}";
 
 
-					var payload = "";
-					//{
-					//	caption = media.MediaTitle,
-					//	media_type = media.MediaType,
-					//	...(media.MediaType == "photo" ? new { image_base64 = media.Base64 } : new { video_url = media.MediaLocalUrl }),
-					//};
+					var payload = new
+					{
+						caption = media.MediaTitle,
+						media_type = media.MediaType,
+						image_base64 = media.MediaType == "photo" ? media.Base64 : null,
+						video_url = media.MediaType == "video" ? media.MediaLocalUrl : null
+					};
 
 					var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
 
@@ -192,23 +193,26 @@ namespace OpenSocials.App_Code
 					string requestUrl = $"https://graph.instagram.com/v18.0/{this.pageId}/children?access_token={this.accessToken}";
 
 					
-					var mediaArray = new List<object>();
 					foreach (var media in mediaList)
 					{
-						//mediaArray.Add(new
-						//{
-						//	media_type = media.MediaType,
-						//	...(media.MediaType == "photo" ? new { image_base64 = media.Base64 } : new { video_url = media.MediaLocalUrl }),
-						//});
+						object mediaObject;
+						if (media.MediaType == "photo")
+						{
+							mediaObject = new { media_type = media.MediaType, image_base64 = media.Base64 };
+						}
+						else
+						{
+							mediaObject = new { media_type = media.MediaType, video_url = media.MediaLocalUrl };
+						}
 					}
 
-					
-					var payload = new
-					{
-						media_type = "CAROUSEL_ALBUM",
-						caption = caption,
-						children = mediaArray
-					};
+
+					var payload = "";
+					//{
+					//	media_type = "CAROUSEL_ALBUM",
+					//	caption = caption,
+					//	children = mediaArray
+					//};
 
 					var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
 
