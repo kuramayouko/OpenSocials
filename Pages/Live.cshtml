@@ -1,7 +1,7 @@
 ﻿@page
-@model OpenSocials.Pages.NewsModel
+@model OpenSocials.Pages.LiveModel
 @{
-	ViewData["Title"] = "News";
+	ViewData["Title"] = "Live";
 }
 
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="" />
+
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/" />
 
@@ -33,39 +34,22 @@
 
   <!-- Banner -->
   <section class="py-5 text-center container" id="cards">
-      <div class="row">
-          <div class="col-lg-6 col-md-8 mx-auto">
-              <h1 class="fw-light">Principais Notícias</h1>
-              <p class="lead">
-                  Tenha acesso a todas as notícias postadas, gerencie as notícias
-                  diretamente do seu navegador, crie notícias, edite notícias,
-                  apague, entre outras funcionalidades.
-              </p>
-              <p>
-                  <a href="CreateNews" class="btn my-2 news-button" style="background-color: #E0004B;">
-                      Criar uma
-                      notícia
-                  </a>
-              </p>
-          </div>
-      </div>
 
       <div class="row justify-content-center py-lg-5 my-3">
-          <div class="col-lg-1 col-md-3">
-              <label>Dias</label>
+          <div class="col-lg-2 col-md-3">
+              <label>Rede Social</label>
               <select class="form-select" aria-label="Selecione o dia">
-                  <option value="1">1</option>
-                  <option value="7">7</option>
-                  <option value="15">15</option>
-                  <option value="30">30</option>
+                  <option value="0">Facebook</option>
+                  <option value="1">Instagram</option>
               </select>
           </div>
-          <div class="col-lg-2 col-md-3">
-              <label>Status</label>
-              <select class="form-select" aria-label="Seleciona o status">
-                  <option value="1">Aprovado</option>
-                  <option value="2">Pendente</option>
-                  <option value="0">Reprovado</option>
+          <div class="col-lg-1 col-md-3">
+              <label>Quantidade</label>
+              <select class="form-select" aria-label="Seleciona a quantidade">
+                    <option value="10">10</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
               </select>
           </div>
       </div>
