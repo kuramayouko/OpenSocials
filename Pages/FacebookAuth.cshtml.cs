@@ -27,7 +27,7 @@ namespace OpenSocials.Pages
 
         public void OnGet()
         {
-			AppConfig appConfig = _context.AppConfigs.FirstOrDefault();
+			AppConfig appConfig = _context.AppConfig.FirstOrDefault();
 
 			if (appConfig != null)
 			{

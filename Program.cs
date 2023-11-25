@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using OpenSocials.App_Code;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlite("Data Source = file:.\\App_Data\\Database.sqlite3;Mode=ReadWrite;")
+           .EnableSensitiveDataLogging());
 
 var app = builder.Build();
 
