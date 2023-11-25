@@ -30,7 +30,7 @@ namespace OpenSocials.App_Code
     public class News
     {
         public int Id { get; set; }
-        public string Tittle { get; set; }
+        public string Title { get; set; }
         public string Text { get; set; }
         public int Media_Id { get; set; }
         public int Is_Approved { get; set; }
@@ -56,21 +56,20 @@ namespace OpenSocials.App_Code
 	
 	public class DataContext : DbContext
 	{
-		//Movido para o Startup.cs
-		//protected override void OnConfiguring(DbContextOptionsBuilder options)
-		//{
-			//options.UseSqlite(Configuration.GetConnectionString("SQLDatabase"));
-		//}
 		
+		public DataContext(DbContextOptions<DataContext> options) : base(options)
+		{
+		}
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			// Config com foreign key aqui
 		}
 		
 		// Add DbSet de todas classes que representam dados do BD
-		public DbSet<AppConfig> AppConfigs { get; set; }
-		public DbSet<News> Newss { get; set; }
-		public DbSet<NewsMedia> NewsMedias { get; set; }
-		public DbSet<User> Users { get; set; }
+		public DbSet<AppConfig> AppConfig { get; set; }
+		public DbSet<News> News { get; set; }
+		public DbSet<NewsMedia> NewsMedia { get; set; }
+		public DbSet<User> User { get; set; }
 	}
 }

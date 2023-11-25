@@ -13,8 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
 
-    <title>Criação de Notícia</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@("docsearch")/css@3" />
@@ -33,59 +31,41 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-    <header data-bs-theme="dark">
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container d-flex align-items-center justify-content-space-between">
-                <div class="d-flex align-items-center">
-                    <a href="news.html" class="navbar-brand d-flex align-items-center navbar-title">
-                        <image class="mx-3" src="../assets/bons-fluidos-logo.png" width="60"></image>
-                    </a>
-
-                    <a href="news.html" class="navbar-title mx-3">
-                        <i class="bi-newspaper icon mx-2"></i>
-                        Notícias</a>
-
-                    <a href="about.html" class="navbar-title mx-3">
-                        <i class="bi-info-circle icon mx-2"></i>Sobre</a>
-                    <a href="logs.html" class="navbar-title mx-3">
-                        <i class="bi-person-lines-fill icon mx-2"></i>Logs</a>
-
-                    <a href="verify-news.html" class="navbar-title mx-3">
-                        <i class="bi-person-check-fill icon mx-2"></i>Controle de
-                        Noticías</a>
-                </div>
-                <div class="d-flex align-items-center">
-                    <i class="bi-box-arrow-in-left icon"></i>
-                    <a href="sign-in.html" class="navbar-title mx-2">Sair</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <main class="form-signin w-100 vh-100 m-auto">
         <div class="py-2">
             <h3>Cadastrar Noticias</h3>
         </div>
-        <form class="row g-3 container d-flex justify-content-start">
-            <div class="col-6">
-                <label for="inputNew" class="form-label">Título</label>
-                <input type="new" class="form-control" id="inputNew" />
-            </div>
+		
+		<form method="post" class="row g-3 container d-flex justify-content-start">
+			<div class="col-6">
+				<label asp-for="NewsBD.Title" class="form-label"></label>
+				<input asp-for="NewsBD.Title" class="form-control" />
+				<span asp-validation-for="NewsBD.Title"></span>
+			</div>
 
-            <div class="col-12">
-                <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
+		<div class="col-12">
+			<label asp-for="NewsBD.Text" class="form-label"></label>
+			<textarea asp-for="NewsBD.Text" class="form-control" rows="3"></textarea>
+			<span asp-validation-for="NewsBD.Text"></span>
+		</div>
 
-            <div class="col-md-6">
-                <label for="exampleFormControlFile1" class="form-label">Selecionar imagens</label>
-                <input type="file" class="form-control" id="exampleFormControlFile1" />
-            </div>
+		<!--Midias anexadas precisa gravar na outra tabela primeiro a fazer-->
+		
+		<!--
+		<div class="col-md-6">
+			<label asp-for="NewsDB.Media_Id" class="form-label"></label>
+			<input asp-for="NewsDB.Media_Id" type="file" class="form-control" />
+			<span asp-validation-for="NewsDB.Media_Id"></span>
+		</div>
+		-->
 
-            <div class="col-12">
-                <button type="submit" class="btn submit">Cadastrar</button>
-            </div>
-        </form>
+		<!-- Add outros campos se necessario -->
+	
+		<div class="col-12">
+			<button type="submit" class="btn submit">Cadastrar</button>
+		</div>
+	</form>
+
     </main>
 
 </body>
