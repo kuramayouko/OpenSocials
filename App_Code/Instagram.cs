@@ -37,6 +37,7 @@ namespace OpenSocials.App_Code
 			this.accessToken = accessToken;
 		}
 
+		// refazer os links da API
 		public async Task<List<InstaPost>> GetPostsAndInstaComments()
 		{
 			using (HttpClient client = new HttpClient())

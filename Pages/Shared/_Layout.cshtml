@@ -1,5 +1,6 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,39 +9,133 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/OpenSocials.styles.css" asp-append-version="true" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">OpenSocials</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <header data-bs-theme="dark">
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container d-flex align-items-center justify-content-space-between">
+                <div class="d-flex align-items-center">
+                    <a href="News" class="navbar-brand d-flex align-items-center navbar-title">
+                        <image class="mx-3" src="../assets/bons-fluidos-logo.png" width="60"></image>
+                    </a>
+
+                    <a href="News" class="navbar-title mx-3">
+                        <i class="bi-newspaper icon mx-2"></i>
+                        Notícias</a>
+
+                    <a href="About" class="navbar-title mx-3">
+                        <i class="bi-info-circle icon mx-2"></i>Sobre</a>
+                    <a href="Logs" class="navbar-title mx-3">
+                        <i class="bi-person-lines-fill icon mx-2"></i>Logs</a>
+
+                    <a href="VerifyNews" class="navbar-title mx-3">
+                        <i class="bi-person-check-fill icon mx-2"></i>Controle de
+                        Noticías</a>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="bi-box-arrow-in-left icon"></i>
+                    <a href="Login" class="navbar-title mx-2">Sair</a>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - OpenSocials - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4"></section>
+
+            <!-- Section: Text -->
+            <section class="mb-4">
+                <p>
+                    O projeto tem como objetivo levar dignidade para meninas que têm o
+                    direito à educação prejudicado por menstruarem, seja pela falta de
+                    absorventes ou por não saberem lidar com a transição de fase em suas
+                    vidas.
+                </p>
+            </section>
+            <!-- Section: Text -->
+
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Notícias</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="CreateNews" class="text-white">Criação de Noticias</a>
+                            </li>
+                            <li>
+                                <a href="VerifyNews" class="text-white">Controle de Noticias</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">OUTROS</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="logs" class="text-white">Logs</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Sobre</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="About" class="text-white">Saiba mais</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Contatos</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="https://www.instagram.com/bonsfluidosutfpr/" target="_blank"
+                                    class="text-white">Instagram</a>
+                            </li>
+                            <li>
+                                <a href="mailto:katiascannavino@utfpr.edu.br" class="text-white">Email</a>
+                            </li>
+                            <li>
+                                <a href="http://www.utfpr.edu.br/campus/cornelioprocopio/extensao/atividades-extensao/projeto-de-extensao-bons-fluidos"
+                                    target="_blank" class="text-white">UTFPR</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
         </div>
+        <!-- Grid container -->
     </footer>
+
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023 Copyright:
+        <a class="text-white" href="https://www.instagram.com/bonsfluidosutfpr/" target="_blank">Bons Fluídos</a>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -48,4 +143,5 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
