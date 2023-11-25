@@ -41,7 +41,7 @@ namespace OpenSocials.App_Code
             set { _base64 = value; }
         }
 
-        public Media(string title, string description, string localUrl)
+        public Media(string? title, string? description, string localUrl)
         {
             this.MediaTitle = title;
             this.MediaDescription = description;
@@ -55,12 +55,12 @@ namespace OpenSocials.App_Code
                 if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                 {
                     MediaType = "photo";
-                    this.ConvertToBase64();
+					//this.ConvertToBase64();
                 }
                 else if (fileExtension == ".mp4" || fileExtension == ".avi" || fileExtension == ".mov")
                 {
                     MediaType = "video";
-                    this.ConvertToBase64();
+                    //this.ConvertToBase64();
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace OpenSocials.App_Code
             }
         }
 
-        private void ConvertToBase64()
+        public void ConvertToBase64()
         {
             using (FileStream fileStream = File.OpenRead(MediaLocalUrl))
             {
