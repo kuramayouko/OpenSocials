@@ -40,7 +40,8 @@
                   apague, entre outras funcionalidades.
               </p>
               <p>
-                  <a href="CreateNews" class="btn my-2 news-button" style="background-color: #E0004B;">
+                  <a href="CreateNews" class="btn my-2 news-button">
+                      <i class="bi-plus-circle icon"></i>
                       Criar uma
                       notícia
                   </a>
@@ -118,15 +119,21 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <p>
-                            <a href="ViewNews" class="btn my-2 news-button">View</a>
+                                                <a href="ViewNews" class="btn my-2 view-teste">
+                                                    <i class="bi-eye icon"></i>
+                                Visualizar
+                                </a>
                         </p>
 
                         <p>
-                            <a href="EditNews?id=@newsItem.Id" class="btn my-2 news-button">Edit</a>
+                            <a href="EditNews?id=@newsItem.Id" class="btn my-2 update-teste">
+                                                    <i class="bi-pencil icon"></i>
+                                Editar
+                                </a>
                         </p>
                     </div>
                     <br>
-                    <small class="text-body-secondary">@newsItem.Date_Created</small>
+                                        <small class="text-body-secondary">@Model.dateTranform(@newsItem.Date_Created)</small>
                 </div>
             </div>
         </div>
