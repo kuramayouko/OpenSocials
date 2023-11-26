@@ -31,18 +31,23 @@ namespace OpenSocials.Pages
         { 
             NewsBD.Is_Approved = 0;
             NewsBD.Date_Created = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffzz00");
-
+            NewsBD.Media_Id = 0;
 
             // Salvando no BD
             _context.News.Add(NewsBD);
             _context.SaveChanges();
-            
-            // Salvando Anexo falta configurar junto com o upload
-			
-			if(NewsMediaBD.Base64 != "0")
+
+            int generatedId = NewsBD.Id;
+
+            // Update News.MediaId with the same value as Id
+
+            _context.News.Update(NewsBD);
+            _context.SaveChanges();
+
+            if (NewsMediaBD.Base64 != "0")
 			{
-				NewsMediaBD.Id = NewsBD.Id;
-				_context.NewsMedia.Add(NewsMediaBD);
+                NewsMediaBD.Id = generatedId;
+                _context.NewsMedia.Add(NewsMediaBD);
 				_context.SaveChanges();
 			}
 			

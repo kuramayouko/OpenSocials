@@ -30,81 +30,80 @@
     crossorigin="anonymous"></script>
 
   <main class="form-signin w-100 m-auto">
-    <div class="container">
-      <div class="row align-items-start">
-        <div class="col-2">
-          <image src="../assets/bons-fluidos-logo.png" width="50"></image>
-        </div>
-        <div class="col-10">
-          <h1 class="h3 mb-3 fw-normal">Faça o Cadastro</h1>
-        </div>
-      </div>
-    </div>
-
-    <form>
-      <div class="row g-2">
-        <div class="col-6 form-floating">
-          <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com" />
-          <label for="floatingInput">Nome</label>
-        </div>
-        <div class="col-6 form-floating">
-          <input type="lastname" class="form-control" id="floatingInput" placeholder="name@example.com" />
-          <label for="floatingInput">Sobrenome</label>
-        </div>
+      <div class="container">
+          <div class="row align-items-start">
+              <div class="col-2">
+                  <image src="../assets/bons-fluidos-logo.png" width="50"></image>
+              </div>
+              <div class="col-10">
+                  <h1 class="h3 mb-3 fw-normal">Faça o Cadastro</h1>
+              </div>
+          </div>
       </div>
 
-      <div class="col">
-        <div class="form-floating my-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
-          <label for="floatingInput">Email</label>
-        </div>
-      </div>
+      <form method="post">
+          <div class="row g-2">
+              <div class="col-6 form-floating">
+                  <input asp-for="LoginDB.Username" class="form-control" placeholder="name@example.com" />
+                  <label asp-for="LoginDB.Username">Username</label>
+              </div>
+              <div class="col-6 form-floating">
+                  <input asp-for="LoginDB.Nickname" class="form-control" placeholder="name@example.com" />
+                  <label asp-for="LoginDB.Nickname">Apelido</label>
+              </div>
+          </div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
-        <label for="floatingPassword">Senha</label>
-      </div>
+          <div class="col">
+              <div class="form-floating my-3">
+                  <input asp-for="LoginDB.Name" class="form-control" placeholder="name@example.com" />
+                  <label asp-for="LoginDB.Name">Nome</label>
+              </div>
+          </div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
-        <label for="floatingPassword">Confirmar Senha</label>
-      </div>
+          <div class="form-floating">
+              <input asp-for="LoginDB.Password" type="password" class="form-control" placeholder="Password" />
+              <label asp-for="LoginDB.Password">Senha</label>
+          </div>
 
-      <div class="form-check text-start my-2 container">
-                 <label class="fw-bold">Permissões</label>
-                <div class="row">
-                    <div class="col-4 font-size">
-                        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Administrador
-                        </label>
-                    </div>
-                    <div class="col-4 font-size">
-                        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Revisador
-                        </label>
-                    </div>
-                    <div class="col-4 font-size">
-                        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Comentador
-                        </label>
-                    </div>
-                </div>
+          <div class="form-floating">
+              <input asp-for="LoginDB.Password" type="password" class="form-control" placeholder="Password" />
+              <label asp-for="LoginDB.Password">Confirmar Senha</label>
+          </div>
 
-               
-      </div>
-            <a href="News" class="btn w-100 py-2 btn-submit" type="submit">Registrar</a>
+          <div class="form-check text-start my-2 container">
+              <label class="fw-bold"></label>
+              <div class="row">
+                  <div class="form-check text-start my-2 container">
+                      <label class="fw-bold">Permissões</label>
+                      <div class="row">
+                          <div class="col-4 font-size">
+                              <input asp-for="LoginDB.Is_Admin" class="form-check-input" />
+                              <label class="form-check-label">Administrador</label>
+                          </div>
+                          <div class="col-4 font-size">
+                              <input asp-for="LoginDB.Is_Reviewer" class="form-check-input" />
+                              <label class="form-check-label">Revisador</label>
+                          </div>
+                          <div class="col-4 font-size">
+                              <input asp-for="LoginDB.Is_Commenter" class="form-check-input" />
+                              <label class="form-check-label">Comentador</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-            <div class="row justify-content-end">
-                <div class="col-5 font-size">
-                    <label>Já tem uma conta? </label>
-                    <a href="Login" class="btn-register">Entrar</a>
-                </div>
-            </div>
-            <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
-    </form>
+          <button type="submit" class="btn w-100 py-2 btn-submit">Registrar</button>
+
+          <div class="row justify-content-end">
+              <div class="col-5 font-size">
+                  <label>Já tem uma conta? </label>
+                  <a href="Login" class="btn-register">Entrar</a>
+              </div>
+          </div>
+          <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+      </form>
+
   </main>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>

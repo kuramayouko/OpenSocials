@@ -22,6 +22,7 @@ namespace OpenSocials.Pages
 
             var newsList = _context.News
                 .Include(news => news.NewsMedia)
+                .OrderByDescending(news => news.Id)
                 .ToList();
 
             if (newsList != null)

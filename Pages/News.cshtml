@@ -78,6 +78,10 @@
 @if (Model.NewsDB.Any()){
     @foreach (var newsItem in Model.NewsDB)
     {
+          if(newsItem.Is_Approved == 2)
+          {
+            continue;
+          }
     <div class="col">
         <div class="card shadow-sm">
 
@@ -118,7 +122,7 @@
                         </p>
 
                         <p>
-                            <a href="EditNews" class="btn my-2 news-button">Edit</a>
+                            <a href="EditNews?id=@newsItem.Id" class="btn my-2 news-button">Edit</a>
                         </p>
                     </div>
                     <br>

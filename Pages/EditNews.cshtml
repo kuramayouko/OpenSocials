@@ -38,26 +38,22 @@
         <div class="py-2">
             <h3>Editar Notícia</h3>
         </div>
-        <form class="row g-3 container d-flex justify-content-start">
+
+        <form method="post" class="row g-3 container d-flex justify-content-start">
             <div class="col-6">
-                <label for="inputNew" class="form-label">Título</label>
-                <input type="new" class="form-control" id="inputNew" value="Título da Notícia Existente" />
+                <label asp-for="NewsDB.Title" class="form-label"></label>
+                <input asp-for="NewsDB.Title" class="form-control" />
+                <input type="hidden" asp-for="NewsDB.Id"/>
             </div>
 
             <div class="col-12">
-                <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
-Descrição da Notícia Existente</textarea>
-            </div>
-
-            <div class="col-md-6">
-                <label for="exampleFormControlFile1" class="form-label">Selecionar imagens</label>
-                <input type="file" class="form-control" id="exampleFormControlFile1" />
+                <label asp-for="NewsDB.Text" class="form-label"></label>
+                <textarea asp-for="NewsDB.Text" class="form-control" rows="3"></textarea>
             </div>
 
             <div class="col-12 d-flex justify-content-between">
-                <button type="submit" class="btn update">Atualizar</button>
-                <button type="submit" class="btn delete">Excluir</button>
+                <button type="submit" name="handler" value="Update" class="btn update">Atualizar</button>
+                <button type="submit" name="handler" value="Delete" class="btn delete">Excluir</button>
             </div>
         </form>
     </main>

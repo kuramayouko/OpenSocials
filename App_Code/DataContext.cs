@@ -51,7 +51,7 @@ namespace OpenSocials.App_Code
 
     }
     
-    public class User
+    public class Login
     {
         public int Id { get; set; }
         public string Username { get; set; }
@@ -62,7 +62,6 @@ namespace OpenSocials.App_Code
         public int Is_Admin { get; set; }
         public int Is_Commenter { get; set; }
         public int Is_Reviewer { get; set; }
-        public int UserId { get; set; }
     }
 	
 	public class DataContext : DbContext
@@ -81,6 +80,6 @@ namespace OpenSocials.App_Code
 		public DbSet<Config> Config { get; set; }
 		public DbSet<News> News { get; set; }
 		public DbSet<NewsMedia> NewsMedia { get; set; }
-		public DbSet<User> User { get; set; }
+		public DbSet<Login> Login { get; set; }
 	}
 }
