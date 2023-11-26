@@ -46,6 +46,8 @@ namespace OpenSocials.Pages
                 // Atualiza o conteudo appid e appsecret
                 Config.AppId = Request.Form["Config.AppId"];
                 Config.AppSecret = Request.Form["Config.AppSecret"];
+                Config.FbPageToken = Request.Form["Config.FbPageToken"];
+                Config.FbPageId = Request.Form["Config.FbPageId"];
 
                 //Salva no bd
                 _context.Config.Update(Config);
