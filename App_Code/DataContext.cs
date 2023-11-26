@@ -20,6 +20,7 @@ namespace OpenSocials.App_Code
 	
 	public class NewsMedia
     {
+		
         public int Id { get; set; }
         public int Base64 { get; set; }
         public string Title { get; set; }
@@ -29,6 +30,7 @@ namespace OpenSocials.App_Code
     
     public class News
     {
+		[Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
@@ -52,6 +54,7 @@ namespace OpenSocials.App_Code
         public int Is_Admin { get; set; }
         public int Is_Commenter { get; set; }
         public int Is_Reviewer { get; set; }
+        public int UserId { get; set; }
     }
 	
 	public class DataContext : DbContext
