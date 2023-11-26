@@ -76,18 +76,37 @@
     <div class="card">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 @if (Model.NewsDB.Any()){
-@foreach (var newsItem in Model.NewsDB)
-{
+    @foreach (var newsItem in Model.NewsDB)
+    {
     <div class="col">
         <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>@newsItem.Title</title>
-                <rect width="100%" height="100%" fill="#55595c" />
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                </text>
-            </svg>
+
+            @if (newsItem.NewsMedia != null)
+            {
+                if (newsItem.NewsMedia.Type.IndexOf("image", StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    <img src="@newsItem.NewsMedia.Base64" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="@newsItem.Title">
+                }
+                else if (newsItem.NewsMedia.Type.IndexOf("video", StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    <video width="100%" height="225" controls>
+                        <source src="@newsItem.NewsMedia.Base64" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                }
+                else
+                {
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>@newsItem.Title</title>
+                        <rect width="100%" height="100%" fill="#55595c" />
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                            Thumbnail
+                        </text>
+                    </svg>
+                }
+            }
+
             <div class="card-body">
                 <p class="card-text">
                     @newsItem.Text

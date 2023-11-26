@@ -54,7 +54,7 @@ namespace OpenSocials.App_Code
                 fileExtension = fileExtension.ToLower();
                 if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                 {
-                    MediaType = "photo";
+                    MediaType = "image";
 					//this.ConvertToBase64();
                 }
                 else if (fileExtension == ".mp4" || fileExtension == ".avi" || fileExtension == ".mov")

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using OpenSocials.App_Code;
 
 namespace OpenSocials.Pages
@@ -19,7 +20,9 @@ namespace OpenSocials.Pages
         public void OnGet()
         {
 
-            var newsList = _context.News.ToList();
+            var newsList = _context.News
+                .Include(news => news.NewsMedia)
+                .ToList();
 
             if (newsList != null)
             {

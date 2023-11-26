@@ -4,11 +4,12 @@ namespace OpenSocials.App_Code
     using Microsoft.EntityFrameworkCore.Design;
     using Microsoft.EntityFrameworkCore.Sqlite;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class AppConfig
 	{
 		[Key]
-		public int Id { get; set; }
+        public int Id { get; set; }
 		
 		public string FbUserToken { get; set; }
 		public string FbPageToken { get; set; }
@@ -20,12 +21,12 @@ namespace OpenSocials.App_Code
 	
 	public class NewsMedia
     {
-		
         public int Id { get; set; }
-        public int Base64 { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Base64 { get; set; }
+        public string Title { get; set; } = "0";
+        public string Description { get; set; } = "0";
         public string Type{ get; set; }
+
     }
     
     public class News
@@ -39,8 +40,13 @@ namespace OpenSocials.App_Code
         public int Fb_PostId { get; set; }
         public int Insta_PostId { get; set; }
         public string Date_Created { get; set; }
-        public string Date_Posted { get; set; }
-        public string Date_Schedule { get; set; }
+        public string Date_Posted { get; set; } = "0";
+        public string Date_Schedule { get; set; } = "0";
+        
+
+        [ForeignKey("Media_Id")]
+        public NewsMedia NewsMedia { get; set; }
+
     }
     
     public class User

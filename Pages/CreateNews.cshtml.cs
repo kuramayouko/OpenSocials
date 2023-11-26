@@ -39,12 +39,12 @@ namespace OpenSocials.Pages
             
             // Salvando Anexo falta configurar junto com o upload
 			
-			//if ()
-			//{
-			//	NewsMediaBD.Id = NewsBD.Id;
-			//	_context.NewsMedia.Add(NewsMediaBD);
-			//	_context.SaveChanges();
-			//}
+			if(NewsMediaBD.Base64 != "0")
+			{
+				NewsMediaBD.Id = NewsBD.Id;
+				_context.NewsMedia.Add(NewsMediaBD);
+				_context.SaveChanges();
+			}
 			
 			
 
