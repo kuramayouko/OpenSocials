@@ -41,5 +41,6 @@
     1. Comando git clone  https://github.com/kuramayouko/OpenSocials.git 
 4. Abrir o projeto com o Visual Studio e selecionar (clicar duas vezes) o arquivo OpenSocials.sln
 5. Iniciar o projeto clicando em cima do botão de dar Play no campo superior.
-   ![image](https://github.com/kuramayouko/OpenSocials/assets/91897050/511b11ec-b649-4ea7-905c-5914f0139ddf) 
-6. Pronto ! Seu projeto está rodando.
+   ![image](https://github.com/kuramayouko/OpenSocials/assets/91897050/511b11ec-b649-4ea7-905c-5914f0139ddf)
+   
+7. Pronto ! Seu projeto está rodando.
