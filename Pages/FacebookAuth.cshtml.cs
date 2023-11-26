@@ -27,13 +27,13 @@ namespace OpenSocials.Pages
 
         public void OnGet()
         {
-			AppConfig appConfig = _context.AppConfig.FirstOrDefault();
+			Config Config = _context.Config.FirstOrDefault();
 
-			if (appConfig != null)
+			if (Config != null)
 			{
 				//Pegar os valores do BD
-				this.appId = appConfig.AppId;
-				this.appSecret = appConfig.AppSecret;
+				this.appId = Config.AppId;
+				this.appSecret = Config.AppSecret;
 
 				string facebookLoginUrl = $"https://www.facebook.com/v18.0/dialog/oauth?client_id={appId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&response_type=token";
 

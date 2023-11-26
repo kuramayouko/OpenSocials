@@ -6,15 +6,17 @@ namespace OpenSocials.App_Code
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class AppConfig
+    public class Config
 	{
 		[Key]
         public int Id { get; set; }
 		
 		public string FbUserToken { get; set; }
 		public string FbPageToken { get; set; }
+        public string FbPageId { get; set; }
 		public string InstaUserToken { get; set; }
 		public string InstaPageToken { get; set; }
+        public string InstaPageId { get; set; }
 		public string AppId { get; set; }
 		public string AppSecret { get; set; }
 	}
@@ -76,7 +78,7 @@ namespace OpenSocials.App_Code
 		}
 		
 		// Add DbSet de todas classes que representam dados do BD
-		public DbSet<AppConfig> AppConfig { get; set; }
+		public DbSet<Config> Config { get; set; }
 		public DbSet<News> News { get; set; }
 		public DbSet<NewsMedia> NewsMedia { get; set; }
 		public DbSet<User> User { get; set; }

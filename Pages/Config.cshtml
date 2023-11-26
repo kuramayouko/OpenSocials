@@ -38,44 +38,46 @@
         <div class="py-2">
             <h3>Configurações</h3>
         </div>
-        <form class="row g-3 container d-flex justify-content-start">
+
+        <form method="post" class="row g-3 container d-flex justify-content-start">
             <div class="col-6 col-sm-7">
-                <label for="appId" class="form-label">App ID</label>
-                <input type="new" class="form-control" id="appId" />
+                <label asp-for="Config.AppId" class="form-label"></label>
+                <input asp-for="Config.AppId" class="form-control" />
+                <span asp-validation-for="Config.AppId"></span>
             </div>
 
             <div class="col-7">
-                <label for="appSecrect" class="form-label">App Secret</label>
-                <input type="new" class="form-control" id="appSecrect" />
+                <label asp-for="Config.AppSecret" class="form-label"></label>
+                <input asp-for="Config.AppSecret" class="form-control" />
+                <span asp-validation-for="Config.AppSecret"></span>
             </div>
 
+            @if (Model.check)
+            {
             <div class="col-7">
-                <label for="facebook" class="form-label">Link Facebook</label>
-                <input type="new" class="form-control" id="facebook" />
+                <label asp-for="Config.FbPageId" class="form-label"></label>
+                <input asp-for="Config.FbPageId" class="form-control" />
             </div>
 
             <div class="col-3">
-                <label  class="form-label">`</label>
-                <a href="FacebookAuth"
-                   target="_blank"
-                   class="btn form-control button-facebook">
+                <label class="form-label"></label>
+                <a asp-page="FacebookAuth" target="_blank" class="btn form-control button-facebook">
                     <i class="bi bi-facebook"></i> Conectar
                 </a>
             </div>
 
             <div class="col-7">
-                <label for="instagram" class="form-label">Link Instagram</label>
-                <input type="new" class="form-control" id="instagram" />
+                <label asp-for="Config.InstaPageId" class="form-label"></label>
+                <input asp-for="Config.InstaPageId" class="form-control" />
             </div>
 
             <div class="col-3 justify-content-end">
-                <label  class="form-label">`</label>
-                <a href="InstagramAuth"
-                   target="_blank"
-                   class="btn form-control button-instagram">
+                <label class="form-label"></label>
+                <a asp-page="InstagramAuth" target="_blank" class="btn form-control button-instagram">
                     <i class="bi bi-instagram"></i> Conectar
                 </a>
             </div>
+            }
 
             <div class="col-12">
                 <button type="submit" class="btn submit">Salvar</button>
