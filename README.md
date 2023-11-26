@@ -32,3 +32,14 @@
     - Está tela é possível fazer aprovações de noticias postadas por usuários. É somente possível fazer o controle da noticias caso for administrador.
 - About (Sobre)
     - Esta tela contém informações sobre o projeto Bons Fluídos na qual é a base do site. Toda a parte de layout foi voltado para o Projeto, desde a utilização de sua logo e paleta de cores.
+      
+**Passos para rodar o projeto.**
+
+1. Baixar o Visual Studio - [Baixar Ferramentas do Visual Studio – Instalação gratuita para Windows, Mac e Linux (microsoft.com)](https://visualstudio.microsoft.com/pt-br/downloads/)
+2. Caso não tenha o Git, baixar o Git- [Git (git-scm.com)](https://git-scm.com/)
+3. Fazer o clone do repositório:
+    1. Comando git clone  https://github.com/kuramayouko/OpenSocials.git 
+4. Abrir o projeto com o Visual Studio e selecionar (clicar duas vezes) o arquivo OpenSocials.sln
+5. Iniciar o projeto clicando em cima do botão de dar Play no campo superior.
+   ![image](https://github.com/kuramayouko/OpenSocials/assets/91897050/511b11ec-b649-4ea7-905c-5914f0139ddf) 
+6. Pronto ! Seu projeto está rodando.
