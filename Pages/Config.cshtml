@@ -52,7 +52,12 @@
                 <span asp-validation-for="Config.AppSecret"></span>
             </div>
 
-            @if (Model.check)
+            <div class="col-7">
+                <label asp-for="Config.FbPageToken" class="form-label">Token Pagina Facebook</label>
+                <input asp-for="Config.FbPageToken" class="form-control" />
+            </div>
+
+            @if (false)
             {
             <div class="col-7">
                 <label asp-for="Config.FbPageId" class="form-label"></label>

@@ -51,9 +51,7 @@ namespace OpenSocials.Pages
 				_context.SaveChanges();
 			}
 			
-			
-
-            return RedirectToPage("/Index");
+            return RedirectToPage("/News");
         }
 
     }
