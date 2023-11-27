@@ -16,7 +16,8 @@ https://developers.facebook.com/async/registration.
 6. Escolher o tipo do app como "business" para ter o acesso de conexão com a API ![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/709b2b74-2b1f-4bb6-aa09-3b7a5b76093f)
 
 7. Obs: O usuário administrador e criador do App consegue rodar a aplicação sem efetivamente publicá-la, desde que esteja no modo desenvolvedor como administrador.![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/458b24c3-bd0a-402d-abec-81f4218a743e)
-8. Configurar as especificidades do app dentro do dashboard da meta ![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/37bc0bbe-fd48-4181-b5e9-bfe72940b45e)
+8. Configurar as especificidades do app dentro do dashboard da meta ![configappmeta](https://github.com/kuramayouko/OpenSocials/assets/82888644/289ca6ff-0c58-4153-8e13-dcf2bc360f96)
+
 
 
 
