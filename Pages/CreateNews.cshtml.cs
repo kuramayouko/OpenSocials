@@ -28,29 +28,35 @@ namespace OpenSocials.Pages
         }
 
         public IActionResult OnPost()
-        { 
+        {
             NewsBD.Is_Approved = 0;
             NewsBD.Date_Created = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffzz00");
             NewsBD.Media_Id = 0;
 
-            // Salvando no BD
+            // Saving NewsBD to the database
             _context.News.Add(NewsBD);
             _context.SaveChanges();
 
+            // Retrieve the generated ID after saving
             int generatedId = NewsBD.Id;
 
-            // Update News.MediaId with the same value as Id
+            // Update News.Media_Id with the same value as Id
+            NewsBD.Media_Id = generatedId;
 
+            // Update NewsBD in the database
             _context.News.Update(NewsBD);
             _context.SaveChanges();
 
-            if (NewsMediaBD.Base64 != "0")
-			{
+            if (!string.IsNullOrEmpty(NewsMediaBD.Base64) && NewsMediaBD.Base64 != "0")
+            {
+                // Assign the generated ID to NewsMediaBD
                 NewsMediaBD.Id = generatedId;
+
+                // Save NewsMediaBD to the database
                 _context.NewsMedia.Add(NewsMediaBD);
-				_context.SaveChanges();
-			}
-			
+                _context.SaveChanges();
+            }
+
             return RedirectToPage("/News");
         }
 
