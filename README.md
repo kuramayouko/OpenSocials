@@ -11,7 +11,8 @@
 3. Após acessar a conta, clicar em "Criar primeiro app" se for o primeiro registro, ou em "Criar app" se algum já tiver sido criado![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/8877f580-8157-4193-898f-0c021ef65b5c)
 
 4. Escolher o caso de uso do app, baseado nas permissões e interação do app com os usuários
-5. Inserir email e nome  atribuído ao app
+5. Inserir email e nome  atribuído ao app![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/d80c124c-3276-419e-8cfa-2bbbf42ddd40)
+
 6. Escolher o tipo do app como "business" para ter o acesso de conexão com a API ![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/709b2b74-2b1f-4bb6-aa09-3b7a5b76093f)
 
 7. Obs: O usuário administrador e criador do App consegue rodar a aplicação sem efetivamente publicá-la, desde que esteja no modo desenvolvedor como administrador.
