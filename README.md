@@ -1,6 +1,8 @@
 # OpenSocials
 
  ----Processo criação App desenvolvedor na Meta com acesso a API----
+ https://developers.facebook.com/docs/development/register?locale=pt_BR
+ https://developers.facebook.com/apps/1047149719835781/dashboard/
 
 1. Entrar em uma conta desenvolvedor da meta caso possua uma, caso contrário, se registrar com a conta do Facebook
 2. Escolher a opção de desenvolvedor
