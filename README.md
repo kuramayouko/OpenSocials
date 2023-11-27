@@ -6,7 +6,8 @@
  https://developers.facebook.com/docs/development/register?locale=pt_BR
  https://developers.facebook.com/apps/1047149719835781/dashboard/
 
-1. Entrar em uma conta desenvolvedor da meta caso possua uma, caso contrário, se registrar com a conta do Facebookhttps://developers.facebook.com/async/registration.
+1. Entrar em uma conta desenvolvedor da meta caso possua uma, caso contrário, se registrar com a conta do Facebook 
+https://developers.facebook.com/async/registration.
 2. Escolher a opção de desenvolvedor
 3. Após acessar a conta, clicar em "Criar primeiro app" se for o primeiro registro, ou em "Criar app" se algum já tiver sido criado
 4. Escolher o caso de uso do app, baseado nas permissões e interação do app com os usuários![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/8877f580-8157-4193-898f-0c021ef65b5c)
