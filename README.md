@@ -15,7 +15,8 @@
 
 6. Escolher o tipo do app como "business" para ter o acesso de conexão com a API ![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/709b2b74-2b1f-4bb6-aa09-3b7a5b76093f)
 
-7. Obs: O usuário administrador e criador do App consegue rodar a aplicação sem efetivamente publicá-la, desde que esteja no modo desenvolvedor como administrador.
+7. Obs: O usuário administrador e criador do App consegue rodar a aplicação sem efetivamente publicá-la, desde que esteja no modo desenvolvedor como administrador.![image](https://github.com/kuramayouko/OpenSocials/assets/82888644/458b24c3-bd0a-402d-abec-81f4218a743e)
+
 
 **Funcionalidades** 
 
