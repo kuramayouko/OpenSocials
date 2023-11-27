@@ -32,5 +32,12 @@ namespace OpenSocials.Pages
 
             return Page();
         }
+
+        public string dateTranform(string dateComing)
+        {
+            var dateTransformed = DateTime.Parse(dateComing);
+
+            return dateTransformed.ToString("dd/MM/yyyy").Replace('-', '/');
+        }
     }
 }
