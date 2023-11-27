@@ -41,6 +41,10 @@ namespace OpenSocials.App_Code
             set { _base64 = value; }
         }
 
+        public Media()
+        {
+
+        }
         public Media(string? title, string? description, string localUrl)
         {
             this.MediaTitle = title;
@@ -81,6 +85,22 @@ namespace OpenSocials.App_Code
                 fileStream.Read(fileBytes, 0, (int)fileStream.Length);
                 this.Base64 = Convert.ToBase64String(fileBytes);
             }
+        }
+
+        public string DetectMediaType(string base64)
+        {
+            // Check for common prefixes that indicate media types
+            if (base64.StartsWith("data:image/", StringComparison.OrdinalIgnoreCase))
+            {
+                return "image";
+            }
+            else if (base64.StartsWith("data:video/", StringComparison.OrdinalIgnoreCase))
+            {
+                return "video";
+            }
+
+            // Default to unknown
+            return "unknown";
         }
     }
 }

@@ -44,63 +44,45 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+
+                @{
+                var maxItems = 9;
+                var counter = 0;
+                }
+
+
+                @foreach (var newsItem in Model.NewsDB)
+                {
+                if(newsItem.Is_Approved == 2)
+                {
+                continue;
+                }
+
                 <tr>
                     <th scope="row">
-                        <img src="" alt="" width="50" height="50" />
+                        <img src="@newsItem.NewsMedia.Base64" alt="" width="50" height="50" />
                     </th>
-                    <td>Jorjim</td>
-                    <td>Titulo noticia</td>
+                    <td>Admin</td> <!-- You can replace this with the actual admin information -->
+                    <td>@newsItem.Title</td>
                     <td>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                        assumenda porro natus ullam iste. Quo tenetur velit maiores vel,
-                        deleniti voluptatum earum libero ipsam qui. Quis ipsum ad velit
-                        quaerat?
+                        @newsItem.Text
                     </td>
                     <td>
-                        <a href="VerifyNews" class="navbar-title">
-                            <i class="bi-check-circle-fill mx-2 icon-sucess"></i></a>
-                        <a href="VerifyNews" class="navbar-title">
-                            <i class="bi-x-circle-fill mx-2 icon-delete"></i></a>
+                        <a href="VerifyNews?Id=@newsItem.Id&publish=True" class="navbar-title">
+                            <i class="bi-check-circle-fill mx-2 icon-sucess"></i>
+                        </a>
+                        <a href="VerifyNews?Id=@newsItem.Id&publish=False" class="navbar-title">
+                            <i class="bi-x-circle-fill mx-2 icon-delete"></i>
+                        </a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">
-                        <img src="" alt="" width="50" height="50" />
-                    </th>
-                    <td>Jorjim</td>
-                    <td>Titulo noticia</td>
-                    <td>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                        assumenda porro natus ullam iste. Quo tenetur velit maiores vel,
-                        deleniti voluptatum earum libero ipsam qui. Quis ipsum ad velit
-                        quaerat?
-                    </td>
-                    <td>
-                        <a href="VerifyNews" class="navbar-title">
-                            <i class="bi-check-circle-fill mx-2 icon-sucess"></i></a>
-                        <a href="VerifyNews" class="navbar-title">
-                            <i class="bi-x-circle-fill mx-2 icon-delete"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <img src="" alt="" width="50" height="50" />
-                    </th>
-                    <td>Jorjim</td>
-                    <td>Titulo noticia</td>
-                    <td>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                        assumenda porro natus ullam iste. Quo tenetur velit maiores vel,
-                        deleniti voluptatum earum libero ipsam qui. Quis ipsum ad velit
-                        quaerat?
-                    </td>
-                    <td>
-                        <a href="VerifyNews" class="navbar-title">
-                            <i class="bi-check-circle-fill mx-2 icon-sucess"></i></a>
-                        <a href="VerifyNews" class="navbar-title">
-                            <i class="bi-x-circle-fill mx-2 icon-delete"></i></a>
-                    </td>
-                </tr>
+                    counter++;
+                    if (counter >= maxItems)
+                    {
+                        break;
+                    }
+                }
+
             </tbody>
         </table>
     </main>

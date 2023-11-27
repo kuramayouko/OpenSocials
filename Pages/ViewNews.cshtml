@@ -33,19 +33,30 @@
 
     <main class="form-signin w-100 vh-100 m-auto">
         <div class="py-2">
-            <h3>Título Noticia</h3>
-            <label for="">22/07/2002</label>
+            <h3>@Model.NewsDB.Title</h3>
+            <label for="">@Model.NewsDB.Date_Created</label>
         </div>
 
         <div class="container">
             <div class="col">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSDFf4Yo584uZDbiRtWNRttyFtpS-VzDUXA&usqp=CAU"
-                    alt="" />
+                @if (Model.NewsDB.NewsMedia != null)
+                {
+                    if (Model.NewsDB.NewsMedia.Type.IndexOf("image", StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        <img src="@Model.NewsDB.NewsMedia.Base64" class="bd-placeholder-img card-img-top"
+                            style="width: 100%; height: auto; max-height: 512px;" alt="@Model.NewsDB.Title">
+                    }
+                    else if (Model.NewsDB.NewsMedia.Type.IndexOf("video", StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        <video width="100%" height="512" controls>
+                        <source src="@Model.NewsDB.NewsMedia.Base64" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    }
+                }
             </div>
             <div class="col">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                obcaecati accusamus nam, officia, animi, sunt eligendi laudantium quia
-                iusto quas nihil vel natus ullam quis facere corrupti cum est. In.
+                @Model.NewsDB.Text
             </div>
         </div>
     </main>
